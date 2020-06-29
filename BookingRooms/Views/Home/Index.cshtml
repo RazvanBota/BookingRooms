@@ -1,0 +1,31 @@
+﻿@model List<RoomModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<p><a asp-area="" asp-controller="Rooms" asp-action="AddRoomView" class="btn btn-primary btn-lg">Add new Room &raquo;</a></p>
+<div class="row justify-content-center">
+    @foreach (var room in Model)
+    {
+        <div class="col-sm-4">
+            <div class="card m-1 high-card">
+                <div class="card-body">
+                    <h5 class="card-title">@room.Name</h5>
+                    @{
+                        if (room.IsAvailable && room.BookedUntil < DateTime.UtcNow)
+                        {
+                            <h6 class="card-subtitle mb-2 text-muted">Is Free</h6>
+                            <a asp-area="" asp-controller="Rooms" asp-action="BookRoom" asp-route-id="@room.Id" class="btn btn-primary">Book Room</a>
+                        }
+                        else
+                        {
+                            <h6 class="card-subtitle mb-2 text-muted">@room.BookedUntil.ToShortDateString()</h6>
+                            <a class="btn btn-primary disabled">Book Room</a>
+                        }
+                    }
+                    <a asp-area="" asp-controller="Rooms" asp-action="EditRoomView" asp-route-id="@room.Id" class="btn btn-primary">Edit Room</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

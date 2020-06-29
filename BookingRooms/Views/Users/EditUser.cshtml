@@ -1,0 +1,24 @@
+﻿@model UserModel
+@{
+    ViewData["Title"] = "Edit User";
+}
+
+@using (Html.BeginForm("EditUser", "Users"))
+{
+    <form>
+        <input asp-for="Id" type="hidden" />
+        <div class="form-group">
+            <label for="username">Username</label>
+            @Html.TextBoxFor(m => m.Username, new { Class = "form-control", Value = Model.Username })
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            @Html.TextBoxFor(m => m.Password, new { Type = "password", Class = "form-control", Value = Model.Password})
+        </div>
+        <div class="form-group">
+            <label for="isAdmin">Is Admin</label>
+            @Html.CheckBoxFor(m => m.IsAdmin, new { Class = "ml-5"})
+        </div>
+        <input type="submit" class="btn btn-primary btn-lg mt-2" name="Edit User &raquo" />
+    </form>
+}

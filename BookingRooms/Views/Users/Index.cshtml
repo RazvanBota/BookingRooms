@@ -1,0 +1,27 @@
+﻿@model List<UserModel>
+@{
+    ViewData["Title"] = "Users Page";
+}
+
+<p><a asp-area="" asp-controller="Users" asp-action="Register" class="btn btn-primary btn-lg">Add new User &raquo;</a></p>
+<div class="row justify-content-center">
+    @foreach (var user in Model)
+    {
+        <div class="col-sm-4">
+            <div class="card m-1 high-card">
+                <div class="card-body">
+                    <h5 class="card-title">@user.Username</h5>
+                    @if (user.IsAdmin)
+                    {
+                        <h6 class="card-subtitle mb-2 text-muted">Admin User</h6>
+                    }
+                    else
+                    {
+                        <h6 class="card-subtitle mb-2 text-muted">Normal User</h6>
+                    }
+                    <a asp-area="" asp-controller="Users" asp-action="EditUserView" asp-route-id="@user.Id" class="btn btn-primary">Edit User</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

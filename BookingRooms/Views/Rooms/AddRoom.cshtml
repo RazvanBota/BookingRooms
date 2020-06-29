@@ -1,0 +1,15 @@
+﻿@model RoomModel
+@{
+    ViewData["Title"] = "Add Room";
+}
+
+@using (Html.BeginForm("AddRoom", "Rooms"))
+{
+    <form>
+        <div class="form-group">
+            <label for="roomName">Room name</label>
+            @Html.TextBoxFor(m => m.Name, new { Class = "form-control" })
+            <input type="submit" class="btn btn-primary btn-lg mt-2" name="Add new Room &raquo" />
+        </div>
+    </form>
+}

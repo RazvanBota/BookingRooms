@@ -1,0 +1,18 @@
+﻿@model RoomModel
+@{
+    ViewData["Title"] = "Book Room";
+}
+
+@using (Html.BeginForm("EditRoom", "Rooms"))
+{
+    <form>
+        <input asp-for="Id" type="hidden" />
+        <input asp-for="Name" type="hidden" />
+        <input asp-for="IsAvailable" type="hidden" />
+        <div class="form-group">
+            <label for="bookedUntil">Booke Until:</label>
+            @Html.TextBoxFor(m => m.BookedUntil, "{0:yyyy-MM-dd}", new { Type = "date", Class = "form-control datepicker" })
+        </div>
+        <input type="submit" class="btn btn-primary btn-lg mt-2" />
+    </form>
+}
